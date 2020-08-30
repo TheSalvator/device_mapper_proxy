@@ -31,3 +31,8 @@ Usage statistics for this device is stored in /sys/module/dmp/stat/volumes
 cat /sys/module/dmp/stat/volumes
 ```
 
+# Tests
+This module was tested on Ubuntu 20.04 and Manjaro KDE with kernel version 5.7.17-2.
+
+On Ubuntu all runs smooth.
+On Manjaro you need to manually start device mapper module and only after this, install device mapper proxy module.
