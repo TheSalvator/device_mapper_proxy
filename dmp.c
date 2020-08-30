@@ -116,7 +116,14 @@ static ssize_t volumes_show( struct kobject *kobj, struct kobj_attribute *attr, 
 
     count += sprintf( buf + count, "total:\n");
     count += sprintf( buf + count, "\treqs: %llu\n", reads + writes );
-    count += sprintf( buf + count, "\tavg size: %llu\n", ( reads_avg_sz + writes_avg_sz )/2 );
+
+    if ( reads == 0 ) {
+        count += sprintf( buf + count, "\tavg size: %llu\n", writes_avg_sz );
+    } else if ( writes == 0 ) {
+        count += sprintf( buf + count, "\tavg size: %llu\n", reads_avg_sz );
+    } else {
+        count += sprintf( buf + count, "\tavg size: %llu\n", ( reads_avg_sz + writes_avg_sz )/2 );
+    }
 
     return count;
 }
